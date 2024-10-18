@@ -1,0 +1,2979 @@
+{
+	"info": {
+		"_postman_id": "4def944c-29d9-4b58-b05d-18419326f902",
+		"name": "Automation Exercise",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37211423"
+	},
+	"item": [
+		{
+			"name": "Automation Exercise",
+			"item": [
+				{
+					"name": "Get All Products List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Fixed the 'Products array is not empty' test to resolve the ReferenceError\r",
+									"pm.test(\"Products array is not empty\", function () {\r",
+									"    const resBody = pm.response.json();\r",
+									"    pm.expect(resBody.products.length).to.be.above(0);\r",
+									"});\r",
+									"\r",
+									"// Test Case 6: Each product has 'id' and 'name'\r",
+									"pm.test(\"Each product has 'id' and 'name'\", function () {\r",
+									"    const resBody = pm.response.json();\r",
+									"    resBody.products.forEach(product => {\r",
+									"        pm.expect(product).to.have.property('id');\r",
+									"        pm.expect(product).to.have.property('name');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Test Case 1: Status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test Case 2: Response is JSON\r",
+									"pm.test(\"Response is JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Test Case 3: Response code is 200\r",
+									"const resBody = pm.response.json();\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"// Test Case 4: First product ID is 1\r",
+									"pm.test(\"First product ID is 1\", function () {\r",
+									"    const resBody = pm.response.json();\r",
+									"    pm.expect(resBody.products[0].id).to.eql(1);\r",
+									"});\r",
+									"\r",
+									"// Test Case 5: Products array is not empty\r",
+									"\r",
+									"// Test Case 7: 'id' is a number\r",
+									"pm.test(\"'id' is a number\", function () {\r",
+									"    const resBody = pm.response.json();\r",
+									"    pm.expect(resBody.products[0].id).to.be.a('number');\r",
+									"});\r",
+									"\r",
+									"// Test Case 8: Response time is below 500ms\r",
+									"pm.test(\"Response time is below 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"// Check if products is an array\r",
+									"pm.test(\"Products is an array\", function() {\r",
+									"    const resBody = pm.response.json();\r",
+									"    pm.expect(resBody.products).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"// Iterate through each product and check properties\r",
+									"resBody.products.forEach((product, index) => {\r",
+									"    pm.test(`Product ${index + 1} has a valid structure`, function() {\r",
+									"        // Check if 'id' exists and is a number\r",
+									"        pm.expect(product).to.have.property('id').that.is.a('number');\r",
+									"        \r",
+									"        // Check if 'name' exists and is a string\r",
+									"        pm.expect(product).to.have.property('name').that.is.a('string');\r",
+									"        \r",
+									"        // Check if 'price' exists and is a string\r",
+									"        pm.expect(product).to.have.property('price').that.is.a('string');\r",
+									"        \r",
+									"        // Check if 'brand' exists and is a string\r",
+									"        pm.expect(product).to.have.property('brand').that.is.a('string');\r",
+									"        \r",
+									"        // Check if 'category' is an object\r",
+									"        pm.expect(product).to.have.property('category').that.is.an('object');\r",
+									"        \r",
+									"        // Check if 'category.usertype' is an object\r",
+									"        pm.expect(product.category).to.have.property('usertype').that.is.an('object');\r",
+									"        \r",
+									"        // Check if 'category.usertype.usertype' exists and is a string\r",
+									"        pm.expect(product.category.usertype).to.have.property('usertype').that.is.a('string');\r",
+									"        \r",
+									"        // Check if 'category.category' exists and is a string\r",
+									"        pm.expect(product.category).to.have.property('category').that.is.a('string');\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/productsList",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"productsList"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Products List",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/api/productsList",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"productsList"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 12 Oct 2024 12:20:26 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "vary",
+									"value": "Accept,Cookie,Accept-Encoding"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "allow",
+									"value": "OPTIONS, POST, PUT, GET, DELETE"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Phusion Passenger(R) 6.0.23"
+								},
+								{
+									"key": "status",
+									"value": "200 OK"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Report-To",
+									"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=0sdvyUvuNnzHo57kfMVv%2BllF3svKzOS5vMQ7KJCrgVeZFOb7gLpSfut%2FUnEl3XnzFia8yGwtptCv2Dbx6OPvXVQUYWDZAiGTSvJ33XdRQNBhotZ7mUhhsQQ%2FjW5NX1P3ipnLJksScRpn\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "NEL",
+									"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "Speculation-Rules",
+									"value": "\"/cdn-cgi/speculation\""
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "8d170b3d8b35229d-CDG"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\"responseCode\": 200, \"products\": [{\"id\": 1, \"name\": \"Blue Top\", \"price\": \"Rs. 500\", \"brand\": \"Polo\", \"category\": {\"usertype\": {\"usertype\": \"Women\"}, \"category\": \"Tops\"}}, {\"id\": 2, \"name\": \"Men Tshirt\", \"price\": \"Rs. 400\", \"brand\": \"H&M\", \"category\": {\"usertype\": {\"usertype\": \"Men\"}, \"category\": \"Tshirts\"}}, {\"id\": 3, \"name\": \"Sleeveless Dress\", \"price\": \"Rs. 1000\", \"brand\": \"Madame\", \"category\": {\"usertype\": {\"usertype\": \"Women\"}, \"category\": \"Dress\"}}, {\"id\": 4, \"name\": \"Stylish Dress\", \"price\": \"Rs. 1500\", \"brand\": \"Madame\", \"category\": {\"usertype\": {\"usertype\": \"Women\"}, \"category\": \"Dress\"}}, {\"id\": 5, \"name\": \"Winter Top\", \"price\": \"Rs. 600\", \"brand\": \"Mast & Harbour\", \"category\": {\"usertype\": {\"usertype\": \"Women\"}, \"category\": \"Tops\"}}, {\"id\": 6, \"name\": \"Summer White Top\", \"price\": \"Rs. 400\", \"brand\": \"H&M\", \"category\": {\"usertype\": {\"usertype\": \"Women\"}, \"category\": \"Tops\"}}, {\"id\": 7, \"name\": \"Madame Top For Women\", \"price\": \"Rs. 1000\", \"brand\": \"Madame\", \"category\": {\"usertype\": {\"usertype\": \"Women\"}, \"category\": \"Tops\"}}, {\"id\": 8, \"name\": \"Fancy Green Top\", \"price\": \"Rs. 700\", \"brand\": \"Polo\", \"category\": {\"usertype\": {\"usertype\": \"Women\"}, \"category\": \"Tops\"}}, {\"id\": 11, \"name\": \"Sleeves Printed Top - White\", \"price\": \"Rs. 499\", \"brand\": \"Babyhug\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Tops & Shirts\"}}, {\"id\": 12, \"name\": \"Half Sleeves Top Schiffli Detailing - Pink\", \"price\": \"Rs. 359\", \"brand\": \"Babyhug\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Tops & Shirts\"}}, {\"id\": 13, \"name\": \"Frozen Tops For Kids\", \"price\": \"Rs. 278\", \"brand\": \"Allen Solly Junior\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Tops & Shirts\"}}, {\"id\": 14, \"name\": \"Full Sleeves Top Cherry - Pink\", \"price\": \"Rs. 679\", \"brand\": \"Kookie Kids\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Tops & Shirts\"}}, {\"id\": 15, \"name\": \"Printed Off Shoulder Top - White\", \"price\": \"Rs. 315\", \"brand\": \"Babyhug\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Tops & Shirts\"}}, {\"id\": 16, \"name\": \"Sleeves Top and Short - Blue & Pink\", \"price\": \"Rs. 478\", \"brand\": \"Babyhug\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Dress\"}}, {\"id\": 18, \"name\": \"Little Girls Mr. Panda Shirt\", \"price\": \"Rs. 1200\", \"brand\": \"Kookie Kids\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Tops & Shirts\"}}, {\"id\": 19, \"name\": \"Sleeveless Unicorn Patch Gown - Pink\", \"price\": \"Rs. 1050\", \"brand\": \"Allen Solly Junior\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Dress\"}}, {\"id\": 20, \"name\": \"Cotton Mull Embroidered Dress\", \"price\": \"Rs. 1190\", \"brand\": \"Kookie Kids\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Dress\"}}, {\"id\": 21, \"name\": \"Blue Cotton Indie Mickey Dress\", \"price\": \"Rs. 1530\", \"brand\": \"Biba\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Dress\"}}, {\"id\": 22, \"name\": \"Long Maxi Tulle Fancy Dress Up Outfits -Pink\", \"price\": \"Rs. 1600\", \"brand\": \"Biba\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Dress\"}}, {\"id\": 23, \"name\": \"Sleeveless Unicorn Print Fit & Flare Net Dress - Multi\", \"price\": \"Rs. 1100\", \"brand\": \"Biba\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Dress\"}}, {\"id\": 24, \"name\": \"Colour Blocked Shirt \\u2013 Sky Blue\", \"price\": \"Rs. 849\", \"brand\": \"Allen Solly Junior\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Tops & Shirts\"}}, {\"id\": 28, \"name\": \"Pure Cotton V-Neck T-Shirt\", \"price\": \"Rs. 1299\", \"brand\": \"H&M\", \"category\": {\"usertype\": {\"usertype\": \"Men\"}, \"category\": \"Tshirts\"}}, {\"id\": 29, \"name\": \"Green Side Placket Detail T-Shirt\", \"price\": \"Rs. 1000\", \"brand\": \"Polo\", \"category\": {\"usertype\": {\"usertype\": \"Men\"}, \"category\": \"Tshirts\"}}, {\"id\": 30, \"name\": \"Premium Polo T-Shirts\", \"price\": \"Rs. 1500\", \"brand\": \"Polo\", \"category\": {\"usertype\": {\"usertype\": \"Men\"}, \"category\": \"Tshirts\"}}, {\"id\": 31, \"name\": \"Pure Cotton Neon Green Tshirt\", \"price\": \"Rs. 850\", \"brand\": \"H&M\", \"category\": {\"usertype\": {\"usertype\": \"Men\"}, \"category\": \"Tshirts\"}}, {\"id\": 33, \"name\": \"Soft Stretch Jeans\", \"price\": \"Rs. 799\", \"brand\": \"Polo\", \"category\": {\"usertype\": {\"usertype\": \"Men\"}, \"category\": \"Jeans\"}}, {\"id\": 35, \"name\": \"Regular Fit Straight Jeans\", \"price\": \"Rs. 1200\", \"brand\": \"H&M\", \"category\": {\"usertype\": {\"usertype\": \"Men\"}, \"category\": \"Jeans\"}}, {\"id\": 37, \"name\": \"Grunt Blue Slim Fit Jeans\", \"price\": \"Rs. 1400\", \"brand\": \"Polo\", \"category\": {\"usertype\": {\"usertype\": \"Men\"}, \"category\": \"Jeans\"}}, {\"id\": 38, \"name\": \"Rose Pink Embroidered Maxi Dress\", \"price\": \"Rs. 2300\", \"brand\": \"Madame\", \"category\": {\"usertype\": {\"usertype\": \"Women\"}, \"category\": \"Dress\"}}, {\"id\": 39, \"name\": \"Cotton Silk Hand Block Print Saree\", \"price\": \"Rs. 3000\", \"brand\": \"Biba\", \"category\": {\"usertype\": {\"usertype\": \"Women\"}, \"category\": \"Saree\"}}, {\"id\": 40, \"name\": \"Rust Red Linen Saree\", \"price\": \"Rs. 3500\", \"brand\": \"Biba\", \"category\": {\"usertype\": {\"usertype\": \"Women\"}, \"category\": \"Saree\"}}, {\"id\": 41, \"name\": \"Beautiful Peacock Blue Cotton Linen Saree\", \"price\": \"Rs. 5000\", \"brand\": \"Madame\", \"category\": {\"usertype\": {\"usertype\": \"Women\"}, \"category\": \"Saree\"}}, {\"id\": 42, \"name\": \"Lace Top For Women\", \"price\": \"Rs. 1400\", \"brand\": \"Mast & Harbour\", \"category\": {\"usertype\": {\"usertype\": \"Women\"}, \"category\": \"Tops\"}}, {\"id\": 43, \"name\": \"GRAPHIC DESIGN MEN T SHIRT - BLUE\", \"price\": \"Rs. 1389\", \"brand\": \"Mast & Harbour\", \"category\": {\"usertype\": {\"usertype\": \"Men\"}, \"category\": \"Tshirts\"}}]}"
+						}
+					]
+				},
+				{
+					"name": "POST To All Products List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test Case 1: Status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test Case 2: Response code is 405\r",
+									"const resBody = pm.response.json();\r",
+									"pm.test(\"Response code is 405\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.eql(405);\r",
+									"});\r",
+									"\r",
+									"// Test Case 3: Error message is correct\r",
+									"pm.test(\"Error message is 'This request method is not supported.'\", function () {\r",
+									"    pm.expect(resBody.message).to.eql(\"This request method is not supported.\");\r",
+									"});\r",
+									"\r",
+									"// Test Case 4: Response is JSON\r",
+									"pm.test(\"Response is JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Test Case 5: Check response structure\r",
+									"pm.test(\"Response contains 'responseCode' and 'message'\", function () {\r",
+									"    pm.expect(resBody).to.have.property('responseCode');\r",
+									"    pm.expect(resBody).to.have.property('message');\r",
+									"});\r",
+									"\r",
+									"// Test Case 6: 'responseCode' is a number\r",
+									"pm.test(\"'responseCode' is a number\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.be.a('number');\r",
+									"});\r",
+									"\r",
+									"// Test Case 7: 'message' is a string\r",
+									"pm.test(\"'message' is a string\", function () {\r",
+									"    pm.expect(resBody.message).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"// Test Case 8: Response time is below 500ms\r",
+									"pm.test(\"Response time is below 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/productsList",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"productsList"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST To All Products List",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/api/productsList",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"productsList"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 12 Oct 2024 12:21:24 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "vary",
+									"value": "Accept,Cookie,Accept-Encoding"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "allow",
+									"value": "OPTIONS, POST, PUT, GET, DELETE"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Phusion Passenger(R) 6.0.23"
+								},
+								{
+									"key": "status",
+									"value": "200 OK"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Report-To",
+									"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=CxbOjS%2F5l4WulICQNpEpDlRpzXXxarQfjCG%2FE24YV4%2BZwO02U1tmka2m1db6qgaaNurGeq9rgydygPI6djrS07j%2FoEqpsDf0Ut0%2B9ei96sWHYHdSJH0jHJWHuGizlAgvNdVQtc5BzA2t\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "NEL",
+									"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "8d170caaf8d5229d-CDG"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\"responseCode\": 405, \"message\": \"This request method is not supported.\"}"
+						}
+					]
+				},
+				{
+					"name": "Get All Brands List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test Case 1: Status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test Case 2: Response is JSON\r",
+									"pm.test(\"Response is JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Test Case 3: Response code is 200\r",
+									"const resBody = pm.response.json();\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"// Test Case 4: Brand count is 34\r",
+									"pm.test(\"Brand count is 34\", function () {\r",
+									"    pm.expect(resBody.brands.length).to.eql(34);\r",
+									"});\r",
+									"\r",
+									"// Test Case 5: Each brand has 'id' and 'name'\r",
+									"pm.test(\"Each brand has 'id' and 'name'\", function () {\r",
+									"    resBody.brands.forEach(brand => {\r",
+									"        pm.expect(brand).to.have.property('id');\r",
+									"        pm.expect(brand).to.have.property('name');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Test Case 6: 'id' is a number\r",
+									"pm.test(\"'id' is a number\", function () {\r",
+									"    pm.expect(resBody.brands[0].id).to.be.a('number');\r",
+									"});\r",
+									"\r",
+									"// Test Case 7: 'name' is a string\r",
+									"pm.test(\"'name' is a string\", function () {\r",
+									"    pm.expect(resBody.brands[0].brand).to.be.a('string');\r",
+									"});\r",
+									"pm.environment.set(\"variable_key\", \"variable_value\");\r",
+									"// Test Case 8: Response time is below 500ms\r",
+									"pm.test(\"Response time is below 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/brandsList",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"brandsList"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Brands List",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/api/brandsList",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"brandsList"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 12 Oct 2024 12:25:36 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "vary",
+									"value": "Accept,Cookie,Accept-Encoding"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "allow",
+									"value": "OPTIONS, POST, PUT, GET, DELETE"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Phusion Passenger(R) 6.0.23"
+								},
+								{
+									"key": "status",
+									"value": "200 OK"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Report-To",
+									"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=U1hfngxFDf6m587ik40HlcpKjj%2Bc9QnVs7LwbsToiitk1%2BVPkCtk9zWazJEXjT8WukxWZc0qF55QGuj9%2FzZMX4slGIXe2Boa0B4n915SACDDG%2BL7ynghRFzWmO4TIJ5IsX9QJ0D1pHl9\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "NEL",
+									"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "Speculation-Rules",
+									"value": "\"/cdn-cgi/speculation\""
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "8d1712d1bc6dbb7e-CDG"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\"responseCode\": 200, \"brands\": [{\"id\": 1, \"brand\": \"Polo\"}, {\"id\": 2, \"brand\": \"H&M\"}, {\"id\": 3, \"brand\": \"Madame\"}, {\"id\": 4, \"brand\": \"Madame\"}, {\"id\": 5, \"brand\": \"Mast & Harbour\"}, {\"id\": 6, \"brand\": \"H&M\"}, {\"id\": 7, \"brand\": \"Madame\"}, {\"id\": 8, \"brand\": \"Polo\"}, {\"id\": 11, \"brand\": \"Babyhug\"}, {\"id\": 12, \"brand\": \"Babyhug\"}, {\"id\": 13, \"brand\": \"Allen Solly Junior\"}, {\"id\": 14, \"brand\": \"Kookie Kids\"}, {\"id\": 15, \"brand\": \"Babyhug\"}, {\"id\": 16, \"brand\": \"Babyhug\"}, {\"id\": 18, \"brand\": \"Kookie Kids\"}, {\"id\": 19, \"brand\": \"Allen Solly Junior\"}, {\"id\": 20, \"brand\": \"Kookie Kids\"}, {\"id\": 21, \"brand\": \"Biba\"}, {\"id\": 22, \"brand\": \"Biba\"}, {\"id\": 23, \"brand\": \"Biba\"}, {\"id\": 24, \"brand\": \"Allen Solly Junior\"}, {\"id\": 28, \"brand\": \"H&M\"}, {\"id\": 29, \"brand\": \"Polo\"}, {\"id\": 30, \"brand\": \"Polo\"}, {\"id\": 31, \"brand\": \"H&M\"}, {\"id\": 33, \"brand\": \"Polo\"}, {\"id\": 35, \"brand\": \"H&M\"}, {\"id\": 37, \"brand\": \"Polo\"}, {\"id\": 38, \"brand\": \"Madame\"}, {\"id\": 39, \"brand\": \"Biba\"}, {\"id\": 40, \"brand\": \"Biba\"}, {\"id\": 41, \"brand\": \"Madame\"}, {\"id\": 42, \"brand\": \"Mast & Harbour\"}, {\"id\": 43, \"brand\": \"Mast & Harbour\"}]}"
+						}
+					]
+				},
+				{
+					"name": "PUT To All Brands List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test Case 1: Status code is 405\r",
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405);\r",
+									"});\r",
+									"\r",
+									"// Test Case 2: Response is JSON\r",
+									"pm.test(\"Response is JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Test Case 3: Response code is 405\r",
+									"const resBody = pm.response.json();\r",
+									"pm.test(\"Response code is 405\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.eql(405);\r",
+									"});\r",
+									"\r",
+									"// Test Case 4: Error message is correct\r",
+									"pm.test(\"Error message is 'This request method is not supported.'\", function () {\r",
+									"    pm.expect(resBody.message).to.eql(\"This request method is not supported.\");\r",
+									"});\r",
+									"\r",
+									"// Test Case 5: 'responseCode' is a number\r",
+									"pm.test(\"'responseCode' is a number\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.be.a('number');\r",
+									"});\r",
+									"\r",
+									"// Test Case 6: 'message' is a string\r",
+									"pm.test(\"'message' is a string\", function () {\r",
+									"    pm.expect(resBody.message).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"// Test Case 7: Check response structure\r",
+									"pm.test(\"Response contains 'responseCode' and 'message'\", function () {\r",
+									"    pm.expect(resBody).to.have.property('responseCode');\r",
+									"    pm.expect(resBody).to.have.property('message');\r",
+									"});\r",
+									"\r",
+									"// Test Case 8: Response time is below 500ms\r",
+									"pm.test(\"Response time is below 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/brandsList",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"brandsList"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT To All Brands List",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/api/brandsList",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"brandsList"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 12 Oct 2024 12:25:59 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "vary",
+									"value": "Accept,Cookie,Accept-Encoding"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "allow",
+									"value": "OPTIONS, POST, PUT, GET, DELETE"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Phusion Passenger(R) 6.0.23"
+								},
+								{
+									"key": "status",
+									"value": "200 OK"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Report-To",
+									"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=GGAGDXm%2BLVeu%2FD4nEp%2FGORYmNL4JmcMZs43qLPI9FH4YXeLqv7ahGcxRKh7cxJ7WGh0YXJVj1o1Yep9CRtu4SPHoCETGkcRQ4ii3sSVd%2BMqLWdJiObpSdnUolVaKrEg1BRdX6db5bfvB\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "NEL",
+									"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "8d1713615f5abb7e-CDG"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\"responseCode\": 405, \"message\": \"This request method is not supported.\"}"
+						}
+					]
+				},
+				{
+					"name": "POST To Search Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test Case 1: Status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test Case 2: Response is JSON\r",
+									"pm.test(\"Response is JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Test Case 3: Response code is 200\r",
+									"const resBody = pm.response.json();\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"// Test Case 4: First product ID is 1\r",
+									"pm.test(\"First product ID is 1\", function () {\r",
+									"    pm.expect(resBody.products[0].id).to.eql(1);\r",
+									"});\r",
+									"\r",
+									"// Test Case 5: Products array is not empty\r",
+									"pm.test(\"Products array is not empty\", function () {\r",
+									"    pm.expect(resBody.products.length).to.be.above(0);\r",
+									"});\r",
+									"\r",
+									"// Test Case 6: Each product has 'id' and 'name'\r",
+									"pm.test(\"Each product has 'id' and 'name'\", function () {\r",
+									"    resBody.products.forEach(product => {\r",
+									"        pm.expect(product).to.have.property('id');\r",
+									"        pm.expect(product).to.have.property('name');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Test Case 7: 'id' is a number\r",
+									"pm.test(\"'id' is a number\", function () {\r",
+									"    pm.expect(resBody.products[0].id).to.be.a('number');\r",
+									"});\r",
+									"\r",
+									"// Test Case 8: Response time is below 500ms\r",
+									"pm.test(\"Response time is below 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "search_product",
+									"value": "top",
+									"description": "top, tshirt, jean",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/searchProduct",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"searchProduct"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST To Search Product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "search_product",
+											"value": "top",
+											"description": "top, tshirt, jean",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://automationexercise.com/api/searchProduct",
+									"protocol": "https",
+									"host": [
+										"automationexercise",
+										"com"
+									],
+									"path": [
+										"api",
+										"searchProduct"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 12 Oct 2024 12:26:47 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "vary",
+									"value": "Accept,Cookie,Accept-Encoding"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "allow",
+									"value": "DELETE, GET, PUT, POST, OPTIONS"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Phusion Passenger(R) 6.0.23"
+								},
+								{
+									"key": "status",
+									"value": "200 OK"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Report-To",
+									"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=kaBnBlx2GJlKDku0p%2Be82IymB7bUCBAUY3hPjnzcFt9WlOMdPplsdGrarutmjJsO7YNwQq1oS3PVQD5enccNOjUFRiTISKgIr4wLASiG8wDKMLoy4d%2BXWTvK4k6j2XDGdsyLocVHUdgY\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "NEL",
+									"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "8d17148b0c86bb7e-CDG"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\"responseCode\": 200, \"products\": [{\"id\": 1, \"name\": \"Blue Top\", \"price\": \"Rs. 500\", \"brand\": \"Polo\", \"category\": {\"usertype\": {\"usertype\": \"Women\"}, \"category\": \"Tops\"}}, {\"id\": 5, \"name\": \"Winter Top\", \"price\": \"Rs. 600\", \"brand\": \"Mast & Harbour\", \"category\": {\"usertype\": {\"usertype\": \"Women\"}, \"category\": \"Tops\"}}, {\"id\": 6, \"name\": \"Summer White Top\", \"price\": \"Rs. 400\", \"brand\": \"H&M\", \"category\": {\"usertype\": {\"usertype\": \"Women\"}, \"category\": \"Tops\"}}, {\"id\": 7, \"name\": \"Madame Top For Women\", \"price\": \"Rs. 1000\", \"brand\": \"Madame\", \"category\": {\"usertype\": {\"usertype\": \"Women\"}, \"category\": \"Tops\"}}, {\"id\": 8, \"name\": \"Fancy Green Top\", \"price\": \"Rs. 700\", \"brand\": \"Polo\", \"category\": {\"usertype\": {\"usertype\": \"Women\"}, \"category\": \"Tops\"}}, {\"id\": 11, \"name\": \"Sleeves Printed Top - White\", \"price\": \"Rs. 499\", \"brand\": \"Babyhug\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Tops & Shirts\"}}, {\"id\": 12, \"name\": \"Half Sleeves Top Schiffli Detailing - Pink\", \"price\": \"Rs. 359\", \"brand\": \"Babyhug\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Tops & Shirts\"}}, {\"id\": 13, \"name\": \"Frozen Tops For Kids\", \"price\": \"Rs. 278\", \"brand\": \"Allen Solly Junior\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Tops & Shirts\"}}, {\"id\": 14, \"name\": \"Full Sleeves Top Cherry - Pink\", \"price\": \"Rs. 679\", \"brand\": \"Kookie Kids\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Tops & Shirts\"}}, {\"id\": 15, \"name\": \"Printed Off Shoulder Top - White\", \"price\": \"Rs. 315\", \"brand\": \"Babyhug\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Tops & Shirts\"}}, {\"id\": 16, \"name\": \"Sleeves Top and Short - Blue & Pink\", \"price\": \"Rs. 478\", \"brand\": \"Babyhug\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Dress\"}}, {\"id\": 18, \"name\": \"Little Girls Mr. Panda Shirt\", \"price\": \"Rs. 1200\", \"brand\": \"Kookie Kids\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Tops & Shirts\"}}, {\"id\": 24, \"name\": \"Colour Blocked Shirt \\u2013 Sky Blue\", \"price\": \"Rs. 849\", \"brand\": \"Allen Solly Junior\", \"category\": {\"usertype\": {\"usertype\": \"Kids\"}, \"category\": \"Tops & Shirts\"}}, {\"id\": 42, \"name\": \"Lace Top For Women\", \"price\": \"Rs. 1400\", \"brand\": \"Mast & Harbour\", \"category\": {\"usertype\": {\"usertype\": \"Women\"}, \"category\": \"Tops\"}}]}"
+						}
+					]
+				},
+				{
+					"name": "POST To Search Product without search_product parameter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test Case 1: Status code is 400\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"// Test Case 2: Response is JSON\r",
+									"pm.test(\"Response is JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Test Case 3: Response code is 400\r",
+									"const resBody = pm.response.json();\r",
+									"pm.test(\"Response code is 400\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.eql(400);\r",
+									"});\r",
+									"\r",
+									"// Test Case 4: Error message is correct\r",
+									"pm.test(\"Error message is 'Bad request, search_product parameter is missing in POST request.'\", function () {\r",
+									"    pm.expect(resBody.message).to.eql(\"Bad request, search_product parameter is missing in POST request.\");\r",
+									"});\r",
+									"\r",
+									"// Test Case 5: Check response structure\r",
+									"pm.test(\"Response contains 'responseCode' and 'message'\", function () {\r",
+									"    pm.expect(resBody).to.have.property('responseCode');\r",
+									"    pm.expect(resBody).to.have.property('message');\r",
+									"});\r",
+									"\r",
+									"// Test Case 6: 'responseCode' is a number\r",
+									"pm.test(\"'responseCode' is a number\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.be.a('number');\r",
+									"});\r",
+									"\r",
+									"// Test Case 7: 'message' is a string\r",
+									"pm.test(\"'message' is a string\", function () {\r",
+									"    pm.expect(resBody.message).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"// Test Case 8: Response time is below 500ms\r",
+									"pm.test(\"Response time is below 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/searchProduct",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"searchProduct"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST To Search Product without search_product parameter",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/api/searchProduct",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"searchProduct"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 12 Oct 2024 12:27:12 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "vary",
+									"value": "Accept,Cookie,Accept-Encoding"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "allow",
+									"value": "OPTIONS, POST, PUT, GET, DELETE"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Phusion Passenger(R) 6.0.23"
+								},
+								{
+									"key": "status",
+									"value": "200 OK"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Report-To",
+									"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=4Rd7sfMcF%2Fvej7pj%2B9XhqgDRTQ2I9R2lT8ceWI3a1fFexZJSyozMIWZBt9mObEJ2qeqK3DV6noHjya%2BYYvQ%2B9Xrj4djp%2B9ozbgQvifXVQ09UzDcc05g8tD1EFs611eem4u9RPhSV1Yba\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "NEL",
+									"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "8d17152ad8b8bb7e-CDG"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\"responseCode\": 400, \"message\": \"Bad request, search_product parameter is missing in POST request.\"}"
+						}
+					]
+				},
+				{
+					"name": "POST To Verify Login with valid details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test Case 1: Status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test Case 2: Response is JSON\r",
+									"pm.test(\"Response is JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Test Case 3: Response code is 200\r",
+									"const resBody = pm.response.json();\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"// Test Case 4: Message is 'User exists!'\r",
+									"pm.test(\"Message is 'User exists!'\", function () {\r",
+									"    pm.expect(resBody.message).to.eql(\"User exists!\");\r",
+									"});\r",
+									"\r",
+									"// Test Case 5: Response contains 'responseCode' and 'message'\r",
+									"pm.test(\"Response contains 'responseCode' and 'message'\", function () {\r",
+									"    pm.expect(resBody).to.have.property('responseCode');\r",
+									"    pm.expect(resBody).to.have.property('message');\r",
+									"});\r",
+									"\r",
+									"// Test Case 6: 'responseCode' is a number\r",
+									"pm.test(\"'responseCode' is a number\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.be.a('number');\r",
+									"});\r",
+									"\r",
+									"// Test Case 7: 'message' is a string\r",
+									"pm.test(\"'message' is a string\", function () {\r",
+									"    pm.expect(resBody.message).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"// Test Case 8: Response time is below 500ms\r",
+									"pm.test(\"Response time is below 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "johndoe1000@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/verifyLogin",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"verifyLogin"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST To Verify Login with valid details",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "johndoe1000@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/verifyLogin",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"verifyLogin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 12 Oct 2024 12:28:11 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "vary",
+									"value": "Accept,Cookie,Accept-Encoding"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "allow",
+									"value": "OPTIONS, POST, PUT, GET, DELETE"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Phusion Passenger(R) 6.0.23"
+								},
+								{
+									"key": "status",
+									"value": "200 OK"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Report-To",
+									"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=dQPXIuN%2Fjse2jOvLH0n%2BIY6loZ1E6x0847ktRj2tfbTgw1sUPDgiWuQ5CPe7kI4yPNehLSOiMTaAxkYXoesxINWIyTZwstgMB9pd2TQGGx2N6d96SAMUvkcB%2FPr9eqzfHMt8exsSqXlE\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "NEL",
+									"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "8d1716971e8cbb7e-CDG"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\"responseCode\": 200, \"message\": \"User exists!\"}"
+						}
+					]
+				},
+				{
+					"name": "POST To Verify Login without email parameter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test Case 1: Status code is 400\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"// Test Case 2: Response is JSON\r",
+									"pm.test(\"Response is JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Test Case 3: Response code is 400\r",
+									"const resBody = pm.response.json();\r",
+									"pm.test(\"Response code is 400\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.eql(400);\r",
+									"});\r",
+									"\r",
+									"// Test Case 4: Error message is correct\r",
+									"pm.test(\"Error message is 'Bad request, email or password parameter is missing in POST request.'\", function () {\r",
+									"    pm.expect(resBody.message).to.eql(\"Bad request, email or password parameter is missing in POST request.\");\r",
+									"});\r",
+									"\r",
+									"// Test Case 5: 'responseCode' is a number\r",
+									"pm.test(\"'responseCode' is a number\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.be.a('number');\r",
+									"});\r",
+									"\r",
+									"// Test Case 6: 'message' is a string\r",
+									"pm.test(\"'message' is a string\", function () {\r",
+									"    pm.expect(resBody.message).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"// Test Case 7: Check response structure\r",
+									"pm.test(\"Response contains 'responseCode' and 'message'\", function () {\r",
+									"    pm.expect(resBody).to.have.property('responseCode');\r",
+									"    pm.expect(resBody).to.have.property('message');\r",
+									"});\r",
+									"\r",
+									"// Test Case 8: Response time is below 500ms\r",
+									"pm.test(\"Response time is below 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "johndoe1001@gmail.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/verifyLogin",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"verifyLogin"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST To Verify Login without email parameter",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "johndoe1001@gmail.com",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/verifyLogin",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"verifyLogin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 12 Oct 2024 12:28:31 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "vary",
+									"value": "Accept,Cookie,Accept-Encoding"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "allow",
+									"value": "OPTIONS, POST, PUT, GET, DELETE"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Phusion Passenger(R) 6.0.23"
+								},
+								{
+									"key": "status",
+									"value": "200 OK"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Report-To",
+									"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=fx6yapSGz16YURrLvvZfJ%2B9dzgviqhXE5hpj8R0JO4KvtEy9BnJAzpeRy%2FIyRr0LHRGlA0ApliD%2BVTXE6NWlxxNEsLf5a46NqZoiqcg2pw%2FNJzP%2ByovfzPxn7y0SMmSO%2B0bhTexhfTlN\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "NEL",
+									"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "8d1717178c5bbb7e-CDG"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\"responseCode\": 400, \"message\": \"Bad request, email or password parameter is missing in POST request.\"}"
+						}
+					]
+				},
+				{
+					"name": "DELETE To Verify Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test Case 1: Status code is 405\r",
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405);\r",
+									"});\r",
+									"\r",
+									"// Test Case 2: Response is JSON\r",
+									"pm.test(\"Response is JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Test Case 3: Response code is 405\r",
+									"const resBody = pm.response.json();\r",
+									"pm.test(\"Response code is 405\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.eql(405);\r",
+									"});\r",
+									"\r",
+									"// Test Case 4: Error message is correct\r",
+									"pm.test(\"Error message is 'This request method is not supported.'\", function () {\r",
+									"    pm.expect(resBody.message).to.eql(\"This request method is not supported.\");\r",
+									"});\r",
+									"\r",
+									"// Test Case 5: 'responseCode' is a number\r",
+									"pm.test(\"'responseCode' is a number\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.be.a('number');\r",
+									"});\r",
+									"\r",
+									"// Test Case 6: 'message' is a string\r",
+									"pm.test(\"'message' is a string\", function () {\r",
+									"    pm.expect(resBody.message).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"// Test Case 7: Check response structure\r",
+									"pm.test(\"Response contains 'responseCode' and 'message'\", function () {\r",
+									"    pm.expect(resBody).to.have.property('responseCode');\r",
+									"    pm.expect(resBody).to.have.property('message');\r",
+									"});\r",
+									"\r",
+									"// Test Case 8: Response time is below 500ms\r",
+									"pm.test(\"Response time is below 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "{{email}}",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/verifyLogin",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"verifyLogin"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "johndoe1001@gmail.com",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE To Verify Login",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "{{email}}",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/verifyLogin",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"verifyLogin"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "johndoe1001@gmail.com",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 12 Oct 2024 12:29:53 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "vary",
+									"value": "Accept,Cookie,Accept-Encoding"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "allow",
+									"value": "OPTIONS, POST, PUT, GET, DELETE"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Phusion Passenger(R) 6.0.23"
+								},
+								{
+									"key": "status",
+									"value": "200 OK"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Report-To",
+									"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=gIndTgUxsAvgJ9tMClokOmn%2B6Ek6VRYbA3PDsUlo9U7SeTLjkQnnqqixq4ytWzsQTp6WV7IFivtq7LtLX3tYgURDPepb5zV%2F9EGZqTZH%2FP70dXtAlJsM0hRHe4K9v5syJJBPv4y96XeN\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "NEL",
+									"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "8d1719150dcdbb7e-CDG"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\"responseCode\": 405, \"message\": \"This request method is not supported.\"}"
+						}
+					]
+				},
+				{
+					"name": "get user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test Case 1: Status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test Case 2: Response is JSON\r",
+									"pm.test(\"Response is JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Test Case 3: Response code is 200\r",
+									"const resBody = pm.response.json();\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"// Test Case 4: User's email is correct\r",
+									"pm.test(\"User email is 'johndoe1017@gmail.com'\", function () {\r",
+									"    pm.expect(resBody.user.email).to.eql(\"johndoe1017@gmail.com\");\r",
+									"});\r",
+									"\r",
+									"// Test Case 5: Response contains 'responseCode' and 'user'\r",
+									"pm.test(\"Response contains 'responseCode' and 'user'\", function () {\r",
+									"    pm.expect(resBody).to.have.property('responseCode');\r",
+									"    pm.expect(resBody).to.have.property('user');\r",
+									"});\r",
+									"\r",
+									"// Test Case 6: 'user' contains necessary fields\r",
+									"pm.test(\"User object contains required fields\", function () {\r",
+									"    pm.expect(resBody.user).to.have.property('name');\r",
+									"    pm.expect(resBody.user).to.have.property('email');\r",
+									"    pm.expect(resBody.user).to.have.property('id');\r",
+									"});\r",
+									"\r",
+									"// Test Case 7: 'name' is a string\r",
+									"pm.test(\"'name' is a string\", function () {\r",
+									"    pm.expect(resBody.user.name).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"// Test Case 8: Response time is below 500ms\r",
+									"pm.test(\"Response time is below 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/api/getUserDetailByEmail?email=johndoe1017@gmail.com",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"getUserDetailByEmail"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "johndoe1017@gmail.com"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/api/getUserDetailByEmail?email=johndoe1017@gmail.com",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"getUserDetailByEmail"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "johndoe1017@gmail.com"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"responseCode\": 200,\n    \"user\": {\n        \"id\": 74546,\n        \"name\": \"name1\",\n        \"email\": \"johndoe1017@gmail.com\",\n        \"title\": \"Mr\",\n        \"birth_day\": \"10\",\n        \"birth_month\": \"10\",\n        \"birth_year\": \"2000\",\n        \"first_name\": \"fn\",\n        \"last_name\": \"ln\",\n        \"company\": \"c\",\n        \"address1\": \"a\",\n        \"address2\": \"a\",\n        \"country\": \"c\",\n        \"state\": \"s\",\n        \"city\": \"c\",\n        \"zipcode\": \"1234\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test Case 1: Status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test Case 2: Response is JSON\r",
+									"pm.test(\"Response is JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Test Case 3: Response code is 200\r",
+									"const resBody = pm.response.json();\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"// Test Case 4: User email matches request body\r",
+									"pm.test(\"User email matches the request body\", function () {\r",
+									"    if(resBody.user){\r",
+									"        pm.expect(resBody.user.email).to.eql(pm.variables.get(\"email\"));\r",
+									"    } else {\r",
+									"        pm.expect.fail(\"User object not found in the response\");\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// Test Case 5: User ID is returned\r",
+									"pm.test(\"User ID is returned\", function () {\r",
+									"    pm.expect(resBody.user).to.have.property('id');\r",
+									"});\r",
+									"\r",
+									"// Test Case 6: 'user' object contains 'name', 'email', and 'id'\r",
+									"pm.test(\"User object contains 'name', 'email', and 'id'\", function () {\r",
+									"    pm.expect(resBody.user).to.have.property('name');\r",
+									"    pm.expect(resBody.user).to.have.property('email');\r",
+									"    pm.expect(resBody.user).to.have.property('id');\r",
+									"});\r",
+									"\r",
+									"// Test Case 7: 'name' is a string\r",
+									"pm.test(\"'name' is a string\", function () {\r",
+									"    if(resBody.user){\r",
+									"        pm.expect(resBody.user.name).to.be.a('string');\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"// Test Case 8: Response time is below 500ms\r",
+									"pm.test(\"Response time is below 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "name1",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "{{email}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Mr",
+									"description": "Mr, Mrs, Miss",
+									"type": "text"
+								},
+								{
+									"key": "birth_date",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "birth_month",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "birth_year",
+									"value": "2000",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "{{$randomFirstName}}",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "{{$randomLastName}}",
+									"type": "text"
+								},
+								{
+									"key": "company",
+									"value": "{{$randomCompanyName}}",
+									"type": "text"
+								},
+								{
+									"key": "address1",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "address2",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "c",
+									"type": "text"
+								},
+								{
+									"key": "zipcode",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "s",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "ankara",
+									"type": "text"
+								},
+								{
+									"key": "mobile_number",
+									"value": "1234567890",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/createAccount",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"createAccount"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "name1",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "Mr",
+											"description": "Mr, Mrs, Miss",
+											"type": "text"
+										},
+										{
+											"key": "birth_date",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "birth_month",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "birth_year",
+											"value": "2000",
+											"type": "text"
+										},
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}",
+											"type": "text"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}",
+											"type": "text"
+										},
+										{
+											"key": "company",
+											"value": "{{$randomCompanyName}}",
+											"type": "text"
+										},
+										{
+											"key": "address1",
+											"value": "a",
+											"type": "text"
+										},
+										{
+											"key": "address2",
+											"value": "a",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "c",
+											"type": "text"
+										},
+										{
+											"key": "zipcode",
+											"value": "1234",
+											"type": "text"
+										},
+										{
+											"key": "state",
+											"value": "s",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "ankara",
+											"type": "text"
+										},
+										{
+											"key": "mobile_number",
+											"value": "1234567890",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/createAccount",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"createAccount"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 12 Oct 2024 12:32:35 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "vary",
+									"value": "Accept,Cookie,Accept-Encoding"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "allow",
+									"value": "OPTIONS, POST"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Phusion Passenger(R) 6.0.23"
+								},
+								{
+									"key": "status",
+									"value": "200 OK"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Report-To",
+									"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=3B%2B4O3W2MK5gohC%2F%2Bml6qkmloN33gvOgstn0EiNhUuMJcUifzAwhwFnzmsDHr5dL9TILQ%2FHgN4K17Tvht3P8WJ4Qr%2BQd3mJnOw8BWDl7WcAaDi%2BHRAcDEIpr4ztFfnFvPParXduNHLO1\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "NEL",
+									"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "8d171d0b7b9b7836-CDG"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\"responseCode\": 400, \"message\": \"Email already exists!\"}"
+						}
+					]
+				},
+				{
+					"name": "Update user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test Case 1: Status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test Case 2: Response is JSON\r",
+									"pm.test(\"Response is JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Test Case 3: Response code is 200\r",
+									"const resBody = pm.response.json();\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"// Test Case 4: User update message is correct\r",
+									"pm.test(\"Message is 'User updated!'\", function () {\r",
+									"    pm.expect(resBody.message).to.eql(\"User updated!\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"// Test Case 6: Response contains updated user details\r",
+									"pm.test(\"Response contains updated user details\", function () {\r",
+									"    pm.expect(resBody.user).to.have.property('name');\r",
+									"    pm.expect(resBody.user).to.have.property('email');\r",
+									"    pm.expect(resBody.user).to.have.property('city');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"// Test Case 8: Response time is below 500ms\r",
+									"pm.test(\"Response time is below 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"updatedCity\", \"istanbul\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "name1",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "{{email}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Mr",
+									"description": "Mr, Mrs, Miss",
+									"type": "text"
+								},
+								{
+									"key": "birth_date",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "birth_month",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "birth_year",
+									"value": "2001",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "{{$randomFirstName}}",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "{{$randomLastName}}",
+									"type": "text"
+								},
+								{
+									"key": "company",
+									"value": "{{$randomCompanyName}}",
+									"type": "text"
+								},
+								{
+									"key": "address1",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "address2",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "c",
+									"type": "text"
+								},
+								{
+									"key": "zipcode",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "s",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "{{updatedCity}}",
+									"type": "text"
+								},
+								{
+									"key": "mobile_number",
+									"value": "1234567890",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/updateAccount",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"updateAccount"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update user",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "name1",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "Mr",
+											"description": "Mr, Mrs, Miss",
+											"type": "text"
+										},
+										{
+											"key": "birth_date",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "birth_month",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "birth_year",
+											"value": "2001",
+											"type": "text"
+										},
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}",
+											"type": "text"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}",
+											"type": "text"
+										},
+										{
+											"key": "company",
+											"value": "{{$randomCompanyName}}",
+											"type": "text"
+										},
+										{
+											"key": "address1",
+											"value": "a",
+											"type": "text"
+										},
+										{
+											"key": "address2",
+											"value": "a",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "c",
+											"type": "text"
+										},
+										{
+											"key": "zipcode",
+											"value": "1234",
+											"type": "text"
+										},
+										{
+											"key": "state",
+											"value": "s",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{updatedCity}}",
+											"type": "text"
+										},
+										{
+											"key": "mobile_number",
+											"value": "1234567890",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/updateAccount",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"updateAccount"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 12 Oct 2024 12:35:09 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "vary",
+									"value": "Accept,Cookie,Accept-Encoding"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "allow",
+									"value": "PUT, OPTIONS"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Phusion Passenger(R) 6.0.23"
+								},
+								{
+									"key": "status",
+									"value": "200 OK"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Report-To",
+									"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=k%2BwmDyC1Mgrttx9wl7E%2FPNXLknGSpmQuMcpLq%2F2OBji0zSpmvi9KLzvBL2BUkU%2FLixRFYt%2F%2BPlr6aoyKvmOUxI6xxLr5TGA5ihWrDeOviuBnRh%2BSmP0MTqgp8ENWK1zDHVfkJYlAMy3W\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "NEL",
+									"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "8d1720ca1dc87836-CDG"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\"responseCode\": 200, \"message\": \"User updated!\"}"
+						}
+					]
+				},
+				{
+					"name": "Get Details for user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test Case 1: Status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test Case 2: Response is JSON\r",
+									"pm.test(\"Response is JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Test Case 3: Response code is 200\r",
+									"const resBody = pm.response.json();\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"// Test Case 4: Check if city is updated to 'Istanbul'\r",
+									"pm.test(\"User's city is 'Istanbul'\", function () {\r",
+									"    pm.expect(resBody.user.city).to.eql(pm.globals.get(\"updatedCity\"));\r",
+									"});\r",
+									"\r",
+									"// Test Case 5: Response contains updated user details\r",
+									"pm.test(\"Response contains updated user details\", function () {\r",
+									"    pm.expect(resBody.user).to.have.property('name');\r",
+									"    pm.expect(resBody.user).to.have.property('email');\r",
+									"    pm.expect(resBody.user).to.have.property('city');\r",
+									"});\r",
+									"\r",
+									"// Test Case 6: 'city' is a string\r",
+									"pm.test(\"'city' is a string\", function () {\r",
+									"    pm.expect(resBody.user.city).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"// Test Case 7: 'email' matches the request\r",
+									"pm.test(\"User's email matches the request\", function () {\r",
+									"    pm.expect(resBody.user.email).to.eql(pm.variables.get(\"email\"));\r",
+									"});\r",
+									"\r",
+									"// Test Case 8: Response time is below 500ms\r",
+									"pm.test(\"Response time is below 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/getUserDetailByEmail?email={{email}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"getUserDetailByEmail"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "{{email}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Details for user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/api/getUserDetailByEmail?email={{email}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"getUserDetailByEmail"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "{{email}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 12 Oct 2024 12:36:05 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "vary",
+									"value": "Accept,Cookie,Accept-Encoding"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "allow",
+									"value": "OPTIONS, POST, PUT, GET, DELETE"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Phusion Passenger(R) 6.0.23"
+								},
+								{
+									"key": "status",
+									"value": "200 OK"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Report-To",
+									"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=9FkVzCFZgZuPD7iMqMR3vB%2BiQFL9R7HE%2F3NeJhOyLjxBqe0c2k4O5dZ2a%2B%2Fu8YYH8b6qMKGiUXubh%2FLPJxmwS9AChsfk72h4QOTY4wm0zNsM4st4tUW4RE26FUctWSnPxlKcysMb8xXF\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "NEL",
+									"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "Speculation-Rules",
+									"value": "\"/cdn-cgi/speculation\""
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "8d17222cbcab7836-CDG"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\"responseCode\": 200, \"user\": {\"id\": 74559, \"name\": \"name1\", \"email\": \"johndoe1000@gmail.com\", \"title\": \"Mr\", \"birth_day\": \"1\", \"birth_month\": \"1\", \"birth_year\": \"2001\", \"first_name\": \"Foster\", \"last_name\": \"Kerluke\", \"company\": \"Littel and Sons\", \"address1\": \"a\", \"address2\": \"a\", \"country\": \"c\", \"state\": \"s\", \"city\": \"istanbul\", \"zipcode\": \"1234\"}}"
+						}
+					]
+				},
+				{
+					"name": "Delete user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test Case 1: Status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test Case 2: Response is JSON\r",
+									"pm.test(\"Response is JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Test Case 3: Response code is 200\r",
+									"const resBody = pm.response.json();\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"// Test Case 4: User delete message is correct\r",
+									"pm.test(\"Message is 'User deleted!'\", function () {\r",
+									"    pm.expect(resBody.message).to.eql(\"User deleted!\");\r",
+									"});\r",
+									"\r",
+									"// Test Case 5: User ID is returned\r",
+									"pm.test(\"User ID is returned\", function () {\r",
+									"    pm.expect(resBody.user).to.have.property('id');\r",
+									"});\r",
+									"\r",
+									"// Test Case 6: 'responseCode' is a number\r",
+									"pm.test(\"'responseCode' is a number\", function () {\r",
+									"    pm.expect(resBody.responseCode).to.be.a('number');\r",
+									"});\r",
+									"\r",
+									"// Test Case 7: Check response structure\r",
+									"pm.test(\"Response contains 'responseCode' and 'message'\", function () {\r",
+									"    pm.expect(resBody).to.have.property('responseCode');\r",
+									"    pm.expect(resBody).to.have.property('message');\r",
+									"});\r",
+									"\r",
+									"// Test Case 8: Response time is below 500ms\r",
+									"pm.test(\"Response time is below 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "{{email}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/deleteAccount",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"deleteAccount"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "{{email}}",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete user",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "{{email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/deleteAccount",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"deleteAccount"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "{{email}}",
+											"disabled": true
+										},
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 12 Oct 2024 12:39:34 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "vary",
+									"value": "Accept,Cookie,Accept-Encoding"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "allow",
+									"value": "OPTIONS, DELETE"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Phusion Passenger(R) 6.0.23"
+								},
+								{
+									"key": "status",
+									"value": "200 OK"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Report-To",
+									"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=a3YWwQZH6DV0U3dJbgd9nrtRmhJiq8OtieJWkTsS0wFw8%2FzAg7mr5DT%2FHM9BBh1%2FR7L2SOEyVY6qLnlUqlRfTU3e%2FOp6Z6xawjB35lnno9B31jhrLLDz5B5dkqIogZohjR4Dk1FMJykj\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "NEL",
+									"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "8d1727452d5b7836-CDG"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\"responseCode\": 404, \"message\": \"Account not found!\"}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
